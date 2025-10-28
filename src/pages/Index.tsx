@@ -125,8 +125,24 @@ const Index = () => {
 
   if (user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-background flex items-center justify-center p-4">
-        <Card className="w-full max-w-md shadow-2xl border-border/50 animate-scale-in">
+      <div className="min-h-screen bg-[#1a2332] flex items-center justify-center p-4 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-60">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute bg-white rounded-full animate-pulse"
+              style={{
+                width: Math.random() * 4 + 1 + 'px',
+                height: Math.random() * 4 + 1 + 'px',
+                top: Math.random() * 100 + '%',
+                left: Math.random() * 100 + '%',
+                animationDelay: Math.random() * 3 + 's',
+                animationDuration: Math.random() * 3 + 2 + 's',
+              }}
+            />
+          ))}
+        </div>
+        <Card className="w-full max-w-md shadow-2xl border-border/50 animate-scale-in relative z-10">
           <CardHeader className="text-center space-y-2">
             <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4 animate-fade-in">
               <Icon name="User" size={40} className="text-primary" />
@@ -155,8 +171,24 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-secondary/30 to-background flex items-center justify-center p-4">
-      <Card className="w-full max-w-md shadow-2xl border-border/50 animate-scale-in">
+    <div className="min-h-screen bg-[#1a2332] flex items-center justify-center p-4 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-60">
+        {[...Array(50)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute bg-white rounded-full animate-pulse"
+            style={{
+              width: Math.random() * 4 + 1 + 'px',
+              height: Math.random() * 4 + 1 + 'px',
+              top: Math.random() * 100 + '%',
+              left: Math.random() * 100 + '%',
+              animationDelay: Math.random() * 3 + 's',
+              animationDuration: Math.random() * 3 + 2 + 's',
+            }}
+          />
+        ))}
+      </div>
+      <Card className="w-full max-w-md shadow-2xl border-border/50 animate-scale-in relative z-10">
         <CardHeader className="text-center space-y-2">
           <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4 animate-fade-in">
             <Icon name="Sparkles" size={40} className="text-primary" />
