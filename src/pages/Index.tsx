@@ -13,7 +13,6 @@ interface User {
   id: number;
   email: string;
   username: string;
-  points: number;
 }
 
 const Index = () => {
@@ -52,7 +51,7 @@ const Index = () => {
         setUser(data);
         toast({
           title: 'Добро пожаловать!',
-          description: `Регистрация успешна. Ваш баланс: ${data.points} очков`,
+          description: 'Регистрация успешна',
         });
       } else {
         toast({
@@ -92,7 +91,7 @@ const Index = () => {
         setUser(data);
         toast({
           title: 'С возвращением!',
-          description: `Вы вошли в систему. Ваш баланс: ${data.points} очков`,
+          description: 'Вы вошли в систему',
         });
       } else {
         toast({
@@ -112,45 +111,7 @@ const Index = () => {
     }
   };
 
-  const handleClaim = async () => {
-    if (!user) return;
-    setLoading(true);
 
-    try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'claim',
-          userId: user.id,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setUser({ ...user, points: data.points });
-        toast({
-          title: 'Очки получены!',
-          description: `+${data.claimed} очков. Всего: ${data.points}`,
-        });
-      } else {
-        toast({
-          title: 'Ошибка',
-          description: data.error || 'Не удалось получить очки',
-          variant: 'destructive',
-        });
-      }
-    } catch (error) {
-      toast({
-        title: 'Ошибка',
-        description: 'Проблема с подключением к серверу',
-        variant: 'destructive',
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleLogout = () => {
     setUser(null);
@@ -174,25 +135,9 @@ const Index = () => {
             <CardDescription className="text-base">{user.email}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 rounded-xl text-center space-y-2 transition-all hover:scale-105 duration-300">
-              <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Баланс очков</p>
-              <p className="text-6xl font-bold text-primary">{user.points}</p>
+            <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8 rounded-xl text-center space-y-2">
+              <p className="text-lg text-muted-foreground">Добро пожаловать в личный кабинет</p>
             </div>
-            <Button
-              onClick={handleClaim}
-              disabled={loading}
-              className="w-full h-12 text-lg font-semibold transition-all hover:scale-105"
-              size="lg"
-            >
-              {loading ? (
-                'Загрузка...'
-              ) : (
-                <>
-                  <Icon name="Gift" className="mr-2" size={20} />
-                  Получить ежедневные очки
-                </>
-              )}
-            </Button>
           </CardContent>
           <CardFooter>
             <Button
@@ -216,9 +161,9 @@ const Index = () => {
           <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4 animate-fade-in">
             <Icon name="Sparkles" size={40} className="text-primary" />
           </div>
-          <CardTitle className="text-3xl font-bold tracking-tight">Система очков</CardTitle>
+          <CardTitle className="text-3xl font-bold tracking-tight">Личный кабинет</CardTitle>
           <CardDescription className="text-base">
-            Зарегистрируйтесь или войдите для получения очков
+            Зарегистрируйтесь или войдите в систему
           </CardDescription>
         </CardHeader>
         <CardContent>
