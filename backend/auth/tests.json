@@ -1,0 +1,39 @@
+{
+  "tests": [
+    {
+      "name": "Test user registration",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "action": "register",
+        "email": "test2@example.com",
+        "password": "testpass123",
+        "username": "TestUser2"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "id": 2,
+        "email": "test2@example.com",
+        "username": "TestUser2",
+        "points": 0
+      }
+    },
+    {
+      "name": "Test user login",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "action": "login",
+        "email": "test2@example.com",
+        "password": "testpass123"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "id": 2,
+        "email": "test2@example.com",
+        "username": "TestUser2",
+        "points": 0
+      }
+    }
+  ]
+}

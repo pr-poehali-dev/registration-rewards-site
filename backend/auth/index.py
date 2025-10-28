@@ -1,14 +1,14 @@
-'''
+"""
 Business: User registration, login, and points claiming system
 Args: event - dict with httpMethod, body, queryStringParameters
       context - object with attributes: request_id, function_name
 Returns: HTTP response dict with user data or error messages
-'''
+"""
 
 import json
 import os
 import hashlib
-import psycopg
+import psycopg2
 from datetime import datetime, date
 from typing import Dict, Any, Optional
 
@@ -17,7 +17,7 @@ def hash_password(password: str) -> str:
 
 def get_db_connection():
     dsn = os.environ.get('DATABASE_URL')
-    return psycopg.connect(dsn)
+    return psycopg2.connect(dsn)
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     method: str = event.get('httpMethod', 'GET')
@@ -61,7 +61,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 password_hash = hash_password(password)
                 
                 cur.execute(
-                    "INSERT INTO users (email, password_hash, username, points) VALUES (%s, %s, %s, %s) RETURNING id, email, username, points",
+                    "INSERT INTO t_p25455168_registration_rewards.users (email, password_hash, username, points) VALUES (%s, %s, %s, %s) RETURNING id, email, username, points",
                     (email, password_hash, username, 0)
                 )
                 user = cur.fetchone()
@@ -95,7 +95,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 password_hash = hash_password(password)
                 
                 cur.execute(
-                    "SELECT id, email, username, points FROM users WHERE email = %s AND password_hash = %s",
+                    "SELECT id, email, username, points FROM t_p25455168_registration_rewards.users WHERE email = %s AND password_hash = %s",
                     (email, password_hash)
                 )
                 user = cur.fetchone()
@@ -135,7 +135,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 today = date.today()
                 
                 cur.execute(
-                    "SELECT last_claim_date, points FROM users WHERE id = %s",
+                    "SELECT last_claim_date, points FROM t_p25455168_registration_rewards.users WHERE id = %s",
                     (user_id,)
                 )
                 result = cur.fetchone()
@@ -161,7 +161,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 new_points = current_points + 100
                 
                 cur.execute(
-                    "UPDATE users SET points = %s, last_claim_date = %s WHERE id = %s",
+                    "UPDATE t_p25455168_registration_rewards.users SET points = %s, last_claim_date = %s WHERE id = %s",
                     (new_points, today, user_id)
                 )
                 conn.commit()
