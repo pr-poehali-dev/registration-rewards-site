@@ -190,7 +190,7 @@ const Index = () => {
       </div>
       <Card className="w-full max-w-md shadow-2xl border-border/50 animate-scale-in relative z-10">
         <CardHeader className="text-center space-y-2">
-          <div className="mx-auto w-40 h-40 flex items-center justify-center mb-4 animate-fade-in">
+          <div className="mx-auto w-48 h-48 flex items-center justify-center mb-4 animate-fade-in">
             <img 
               src="https://cdn.poehali.dev/files/c4cda11c-84bd-444d-9403-8f557526d38a.png" 
               alt="Logo" 
