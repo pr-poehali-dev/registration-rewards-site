@@ -190,8 +190,12 @@ const Index = () => {
       </div>
       <Card className="w-full max-w-md shadow-2xl border-border/50 animate-scale-in relative z-10">
         <CardHeader className="text-center space-y-2">
-          <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4 animate-fade-in">
-            <Icon name="Sparkles" size={40} className="text-primary" />
+          <div className="mx-auto w-28 h-28 flex items-center justify-center mb-4 animate-fade-in">
+            <img 
+              src="https://cdn.poehali.dev/files/c4cda11c-84bd-444d-9403-8f557526d38a.png" 
+              alt="Logo" 
+              className="w-full h-full object-contain"
+            />
           </div>
           <CardTitle className="text-3xl font-bold tracking-tight">Добро пожаловать</CardTitle>
           <CardDescription className="text-base">
