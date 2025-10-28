@@ -161,7 +161,7 @@ const Index = () => {
           <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4 animate-fade-in">
             <Icon name="Sparkles" size={40} className="text-primary" />
           </div>
-          <CardTitle className="text-3xl font-bold tracking-tight">Личный кабинет</CardTitle>
+          <CardTitle className="text-3xl font-bold tracking-tight">Добро пожаловать</CardTitle>
           <CardDescription className="text-base">
             Зарегистрируйтесь или войдите в систему
           </CardDescription>
